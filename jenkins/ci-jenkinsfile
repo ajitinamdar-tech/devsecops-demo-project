@@ -1,14 +1,24 @@
 pipeline {
-    agent any
+    agent "devsecops-demo-node-jenkins-slave"
     options {
         // Timeout counter starts AFTER agent is allocated
-        timeout(time: 1, unit: 'SECONDS')
+        //timeout(time: 1, unit: 'SECONDS')
     }
     stages {
-        stage('Example') {
+          stage("build & SonarQube analysis") {
+            agent any
             steps {
-                echo 'Hello World'
+              withSonarQubeEnv('My SonarQube Server') {
+                sh 'mvn clean package sonar:sonar'
+              }
             }
-        }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
     }
 }
