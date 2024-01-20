@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'devsecops-demo-node-jenkins-slave' }
+    agent { label 'devsecops-demo-private-jenkins-slave' }
     /*options {
         // Timeout counter starts AFTER agent is allocated
         timeout(time: 1, unit: 'SECONDS')
