@@ -9,6 +9,7 @@ pipeline {
             agent any
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
+                sh 'mvn --version'
                 sh 'mvn clean package sonar:sonar'
               }
             }
