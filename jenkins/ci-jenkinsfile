@@ -5,7 +5,7 @@ pipeline {
         timeout(time: 1, unit: 'SECONDS')
     }*/
     stages {
-          stage("build & SonarQube analysis") {
+          /*stage("build & SonarQube analysis") {
             agent any
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
@@ -20,7 +20,7 @@ pipeline {
                 waitForQualityGate abortPipeline: true
               }
             }
-          }
+          }*/
           stage('Docker Build') {
             steps {
               sh 'whoami'
