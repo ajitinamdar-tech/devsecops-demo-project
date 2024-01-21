@@ -1,3 +1,3 @@
 FROM tomcat
 
-COPY ROOT.war /usr/local/tomcat/webapps/
+COPY /var/lib/jenkins/workspace/ci-pipeline/target/devsecops-demo-project-1.0-SNAPSHOT.jar /usr/local/tomcat/webapps/
