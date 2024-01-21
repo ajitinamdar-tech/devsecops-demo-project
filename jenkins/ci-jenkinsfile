@@ -27,7 +27,7 @@ pipeline {
           }
           stage('Docker Scan') {
             steps {
-              sh 'This is scan stage'
+              sh 'echo "This is scan stage"'
             }
           }
           stage('Docker Tag and Push to ECR') {
@@ -39,7 +39,7 @@ pipeline {
           }
           stage('Helm Deploy') {
             steps {
-              sh 'This is helm deploy stage'
+              sh 'echo "This is Helm Deploy stage"'
             }
           }
     }
