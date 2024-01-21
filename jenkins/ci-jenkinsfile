@@ -21,7 +21,7 @@ pipeline {
           }
           stage('Docker Build') {
             steps {
-              sh cp '/home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project-1.0-SNAPSHOT.jar .'
+              sh 'cp /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project-1.0-SNAPSHOT.jar .'
               sh 'docker build -t devsecops-demo-java-app:latest .'
             }
           }
