@@ -34,7 +34,7 @@ pipeline {
             steps {
               sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com'
               sh 'IMAGE_ID=$(sudo docker images --filter=reference=devsecops-demo-java-app --format "{{.ID}}")'
-              sh 'docker tag $IMAGE_ID 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0'
+              sh 'docker tag ${IMAGE_ID} 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0'
               sh 'docker push 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0'
             }
           }
