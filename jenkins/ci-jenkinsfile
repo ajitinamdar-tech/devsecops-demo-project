@@ -7,11 +7,8 @@ pipeline {
     stages {
           stage("build & SonarQube analysis") {
             steps {
-              sh 'whoami'
-              sh 'ifconfig'
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
                 sh 'mvn clean package sonar:sonar'
-                //sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=devsecops-demo-project -Dsonar.projectName='devsecops-demo-project'"
               }
             }
           }
@@ -24,9 +21,8 @@ pipeline {
           }
           stage('Docker Build') {
             steps {
-              sh 'whoami'
-              sh 'ifconfig'
-      	      sh 'docker build -t devsecops-demo-java-app:latest .'
+              sh cp '/home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project-1.0-SNAPSHOT.jar .'
+              sh 'docker build -t devsecops-demo-java-app:latest .'
             }
           }
     }
