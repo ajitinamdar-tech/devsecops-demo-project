@@ -6,6 +6,8 @@ pipeline {
     }*/
     stages {
           stage("build & SonarQube analysis") {
+            sh 'whoami'
+            sh 'ifconfig'
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
                 sh 'mvn clean package sonar:sonar'
