@@ -5,14 +5,14 @@ pipeline {
         timeout(time: 1, unit: 'SECONDS')
     }*/
     stages {
-          stage("build & SonarQube analysis") {
+          stage("Maven Build and Sonarqube Analysis") {
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
                 sh 'mvn clean package sonar:sonar'
               }
             }
           }
-          stage("Quality Gate") {
+          stage("Sonarqube Quality Gate") {
             steps {
               timeout(time: 3, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
@@ -23,6 +23,23 @@ pipeline {
             steps {
               sh 'cp /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project-1.0-SNAPSHOT.jar .'
               sh 'docker build -t devsecops-demo-java-app:latest .'
+            }
+          }
+          stage('Docker Scan') {
+            steps {
+              sh 'This is scan stage'
+            }
+          }
+          stage('Docker Tag and Push to ECR') {
+            steps {
+              sh 'aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com'
+              sh 'docker tag 595be50ef188 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0'
+              sh 'docker push 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0'
+            }
+          }
+          stage('Helm Deploy') {
+            steps {
+              sh 'This is helm deploy stage'
             }
           }
     }
