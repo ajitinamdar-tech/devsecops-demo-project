@@ -9,7 +9,6 @@ pipeline {
             agent any
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
-                //sh 'mvn --version'
                 sh 'mvn clean package sonar:sonar'
                 //sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=devsecops-demo-project -Dsonar.projectName='devsecops-demo-project'"
               }
@@ -20,6 +19,11 @@ pipeline {
               timeout(time: 3, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true
               }
+            }
+          }
+          stage('Docker Build') {
+            steps {
+      	      sh 'docker build -t devsecops-demo-java-app:latest .'
             }
           }
     }
