@@ -25,6 +25,7 @@ pipeline {
           stage('Docker Build') {
             steps {
               sh 'whoami'
+              sh 'ifconfig'
       	      sh 'docker build -t devsecops-demo-java-app:latest .'
             }
           }
