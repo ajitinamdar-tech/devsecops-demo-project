@@ -2,6 +2,7 @@ package com.mycompany.app;
 import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import org.apache.log4j.Logger;
 
 /**
  * Hello world!
@@ -27,7 +28,7 @@ public class App extends HttpServlet{
          PrintWriter out = response.getWriter();
          out.println("<h1>" + message + "</h1>");
       } catch (Exception e) {
-         
+         log.debug("Something went wrong");
       }
    }
 }
