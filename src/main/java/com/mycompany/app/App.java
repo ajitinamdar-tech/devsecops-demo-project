@@ -10,7 +10,7 @@ import org.apache.log4j.Logger;
 public class App extends HttpServlet{
 
    private String message;
-   static Logger log = Logger.getLogger(log4jExample.class.getName());
+   static Logger log = Logger.getLogger(App.class.getName());
    @Override
    public void init() throws ServletException {
       // Do required initialization
