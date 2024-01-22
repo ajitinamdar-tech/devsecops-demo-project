@@ -27,7 +27,7 @@ public class App extends HttpServlet{
          PrintWriter out = response.getWriter();
          out.println("<h1>" + message + "</h1>");
       } catch (Exception e) {
-         log.debug("Something went wrong");
+         
       }
    }
 }
