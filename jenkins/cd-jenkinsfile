@@ -8,7 +8,8 @@ pipeline {
           stage('Helm Deploy') {
             steps {
               sh 'pwd'
-              sh 'cd ../helm-charts/devsecops-demo-app-deploy/'
+              sh 'cd helm-charts/devsecops-demo-app-deploy/'
+              sh 'pwd'
               sh 'helm upgrade --install devsecops-demo-app-deploy .'
             }
           }
