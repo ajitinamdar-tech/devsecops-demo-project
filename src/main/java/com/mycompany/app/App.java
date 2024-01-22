@@ -6,17 +6,23 @@ import javax.servlet.http.*;
 /**
  * Hello world!
  */
-public class App {
+public class App extends HttpServlet{
 
-    private static final String MESSAGE = "Hello World!";
+   private String message;
 
-    public App() {}
+   public void init() throws ServletException {
+      // Do required initialization
+      message = "Hello world from Java!";
+   }
 
-    public static void main(String[] args) {
-        System.out.println(MESSAGE);
-    }
+   public void doGet(HttpServletRequest request, HttpServletResponse response)
+      throws ServletException, IOException {
 
-    public String getMessage() {
-        return MESSAGE;
-    }
+      // Set response content type
+      response.setContentType("text/html");
+
+      // Actual logic goes here.
+      PrintWriter out = response.getWriter();
+      out.println("<h1>" + message + "</h1>");
+   }
 }
