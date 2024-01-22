@@ -14,7 +14,6 @@
       <version>5.10.1</version>
       <scope>test</scope>
     </dependency>
-      <dependencies>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
