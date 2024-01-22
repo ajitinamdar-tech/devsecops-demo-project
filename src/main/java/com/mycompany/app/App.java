@@ -9,12 +9,12 @@ import javax.servlet.http.*;
 public class App extends HttpServlet{
 
    private String message;
-
+   @Override
    public void init() throws ServletException {
       // Do required initialization
       message = "Hello world from Java!";
    }
-
+   @Override
    public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
