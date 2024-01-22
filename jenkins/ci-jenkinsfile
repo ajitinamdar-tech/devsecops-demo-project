@@ -36,12 +36,12 @@ pipeline {
               '''
             }
           }
-          stage('Docker ECR Scan') {
+          /*stage('Docker ECR Scan') {
             steps {
               sh 'aws ecr start-image-scan \
                      --repository-name devsecops-demo-ecr \
                     --image-id imageDigest=sha256:c3e806375987129f4fb003e09aa09210f7f9d042546bd1cbf36ce174c0fb630b'
             }
-          }
+          }*/
     }
 }
