@@ -25,11 +25,6 @@ pipeline {
               sh 'docker build -t devsecops-demo-java-app:1.0.0 .'
             }
           }
-          stage('Docker Scan') {
-            steps {
-              sh 'echo "This is scan stage"'
-            }
-          }
           stage('Docker Tag and Push to ECR') {
             steps {
               sh '''
@@ -39,6 +34,13 @@ pipeline {
               docker tag ${IMAGE_ID} 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0
               docker push 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0
               '''
+            }
+          }
+          stage('Docker ECR Scan') {
+            steps {
+              sh 'aws ecr start-image-scan \
+                     --repository-name devsecops-demo-ecr \
+                    --image-id imageDigest=sha256:c3e806375987129f4fb003e09aa09210f7f9d042546bd1cbf36ce174c0fb630b'
             }
           }
     }
