@@ -8,7 +8,7 @@ pipeline {
           stage('Helm Deploy') {
             steps {
               sh '''
-              cd helm-charts/devsecops-demo-app-deploy/
+              cd helm-charts
               sed -i "s/replace_image_tag/${TAG_VERSION}/g" values.yaml
               helm upgrade --install devsecops-demo-app-deploy .
               kubectl get svc
