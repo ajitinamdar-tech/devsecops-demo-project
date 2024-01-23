@@ -8,7 +8,7 @@ pipeline {
           stage("Maven Build and Sonarqube Analysis") {
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
-                sh 'mvn clean package sonar:sonar'
+                sh 'mvn clean install sonar:sonar'
               }
             }
           }
