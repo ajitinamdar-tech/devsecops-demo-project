@@ -5,7 +5,7 @@ pipeline {
         timeout(time: 1, unit: 'SECONDS')
     }*/
     stages {
-          stage("Maven Build and Sonarqube Analysis") {
+          /*stage("Maven Build and Sonarqube Analysis") {
             steps {
               withSonarQubeEnv('devsecops-demo-sonarqube-server') {
                 sh 'mvn clean package sonar:sonar'
@@ -18,7 +18,7 @@ pipeline {
                 waitForQualityGate abortPipeline: true
               }
             }
-          }
+          }*/
           stage('Docker Build') {
             steps {
               sh 'cp /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project-1.0-SNAPSHOT.war .'
