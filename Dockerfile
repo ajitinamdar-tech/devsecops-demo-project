@@ -1,3 +1,4 @@
-#FROM tomcat
-FROM gcr.io/kodekloud/centos-ssh-enabled:tomcat
+FROM tomcat
 COPY devsecops-demo-project-1.0-SNAPSHOT.jar /usr/local/tomcat/webapps/
+EXPOSE 8080
+CMD ["catalina.sh","run"]
