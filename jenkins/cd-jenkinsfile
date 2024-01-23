@@ -21,7 +21,8 @@ pipeline {
 
               sh '''
               cd helm-charts/devsecops-demo-app-deploy/
-              helm upgrade --install  --set image.tag=${TAG_VERSION} devsecops-demo-app-deploy .
+              sed -i "s/replace_image_tag/${TAG_VERSION}/g" values.yaml
+              helm upgrade --install devsecops-demo-app-deploy .
               kubectl get svc
               '''
             }

@@ -8,7 +8,7 @@ image:
   repository: 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "replace_image_tag"
 
 imagePullSecrets: 
   - name: devsecops-demo-ecr-secret
