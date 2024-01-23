@@ -10,6 +10,7 @@ pipeline {
               sh '''
               cd helm-charts/devsecops-demo-app-deploy/
               helm upgrade --install devsecops-demo-app-deploy .
+              kubectl get svc
               '''
             }
           }
