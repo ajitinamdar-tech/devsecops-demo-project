@@ -11,7 +11,7 @@ pipeline {
                     def tagVersion
                     // Get the input
                     def userInput = input(
-                            id: 'tagVersion', message: 'Enter the tag version:?',
+                            id: 'userInput', message: 'Enter the tag version:?',
                             parameters: [
 
                                     string(defaultValue: '1.0.0',
