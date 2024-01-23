@@ -5,7 +5,7 @@
   <artifactId>devsecops-demo-project</artifactId>
   <packaging>war</packaging>
   <version>1.0-SNAPSHOT</version>
-  <name>Demo Maven Webapp</name>
+  <name>devsecops-demo-project</name>
   <url>https://github.com/ajitinamdar-tech/jenkins-cicd-java-maven-demo</url>
   <build>
     <finalName>devsecops-demo-project</finalName>
