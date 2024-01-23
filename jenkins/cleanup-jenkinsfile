@@ -10,12 +10,12 @@ pipeline {
               sh '''
               aws ecr batch-delete-image \
                 --repository-name devsecops-demo-ecr \
-                --image-ids imageTag=1.0.0 imageTag=2.0.0
-              docker pull nginx
-              docker rmi -f $(docker images -aq)
-              rm /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war
-              cd helm-charts/devsecops-demo-app-deploy/
-              helm uninstall devsecops-demo-app-deploy
+                --image-ids imageTag=1.0.0 imageTag=2.0.0 || :
+              docker pull nginx || :
+              docker rmi -f $(docker images -aq) || :
+              rm /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war || :
+              cd helm-charts/devsecops-demo-app-deploy/ || :
+              helm uninstall devsecops-demo-app-deploy || :
               '''
             }
           }
