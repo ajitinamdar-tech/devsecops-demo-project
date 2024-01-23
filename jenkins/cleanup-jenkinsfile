@@ -8,6 +8,7 @@ pipeline {
           stage('Helm Deploy') {
             steps {
               sh '''
+              docker rmi -f $(docker images -aq)
               rm /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war
               cd helm-charts/devsecops-demo-app-deploy/
               helm uninstall devsecops-demo-app-deploy
