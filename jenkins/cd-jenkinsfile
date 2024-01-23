@@ -8,7 +8,7 @@ pipeline {
           stage('Helm Deploy') {
             steps {
               script {
-                    def tagVersion
+                    def inputConfig
                     // Get the input
                     def userInput = input(
                             id: 'userInput', message: 'Enter the tag version:?',
@@ -20,10 +20,10 @@ pipeline {
                             ])
 
                     // Save to variables. Default to empty string if not found.
-                    tagVersion = userInput.tagVersion?:''
+                    inputConfig = userInput.tagVersion?:''
 
                     // Echo to console
-                    echo("IQA Sheet Path: ${tagVersion}")
+                    echo("IQA Sheet Path: ${inputConfig}")
                 }
 
               sh '''
