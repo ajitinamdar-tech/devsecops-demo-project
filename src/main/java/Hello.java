@@ -1,7 +1,7 @@
 // Import required java libraries
 import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
 
 // Extend HttpServlet class
 public class Hello extends HttpServlet {
