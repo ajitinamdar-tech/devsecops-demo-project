@@ -8,6 +8,7 @@ pipeline {
           stage('Helm Deploy') {
             steps {
               script {
+                    def tagVersion
                     // Get the input
                     def userInput = input(
                             id: 'tagVersion', message: 'Enter the tag version:?',
