@@ -7,18 +7,6 @@ pipeline {
     stages {
           stage('Helm Deploy') {
             steps {
-              script {
-                    // Get the input
-                    def TAG_VERSION = input(
-                            id: 'userInput', message: 'Enter the tag version:?',
-                            parameters: [
-
-                                    string(defaultValue: '1.0.0',
-                                            description: 'Enter the tag version',
-                                            name: 'tagVersion')
-                            ])
-                }
-
               sh '''
               cd helm-charts/devsecops-demo-app-deploy/
               sed -i "s/replace_image_tag/${TAG_VERSION}/g" values.yaml

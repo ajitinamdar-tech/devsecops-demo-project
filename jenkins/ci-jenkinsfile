@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'devsecops-demo-private-jenkins-slave' }
     environment {
-        TAG_VERSION = '1.0.0'
+        TAG_VERSION = '2.0.0'
         REGISTRY_PATH = '277565952452.dkr.ecr.ap-southeast-1.amazonaws.com'
         ECR_REPO_FULL_NAME = '277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr'
         WAR_FULL_PATH = '/home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war'
