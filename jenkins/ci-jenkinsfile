@@ -42,7 +42,8 @@ pipeline {
               export IMAGE_DIGEST=$(aws ecr describe-images --repository-name devsecops-demo-ecr --filter tagStatus=TAGGED --query 'imageDetails[*].imageDigest' --output text)
               aws ecr start-image-scan \
                      --repository-name devsecops-demo-ecr \
-                    --image-id imageDigest=${IMAGE_DIGEST}'
+                    --image-id imageDigest=${IMAGE_DIGEST}
+              '''      
             }
           }
     }
