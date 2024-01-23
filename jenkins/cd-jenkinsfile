@@ -7,6 +7,24 @@ pipeline {
     stages {
           stage('Helm Deploy') {
             steps {
+              script {
+                    // Get the input
+                    def userInput = input(
+                            id: 'tagVersion', message: 'Enter the tag version:?',
+                            parameters: [
+
+                                    string(defaultValue: '1.0.0',
+                                            description: 'Enter the tag version',
+                                            name: 'tagVersion')
+                            ])
+
+                    // Save to variables. Default to empty string if not found.
+                    tagVersion = userInput.tagVersion?:''
+
+                    // Echo to console
+                    echo("IQA Sheet Path: ${tagVersion}")
+                }
+
               sh '''
               cd helm-charts/devsecops-demo-app-deploy/
               helm upgrade --install devsecops-demo-app-deploy .

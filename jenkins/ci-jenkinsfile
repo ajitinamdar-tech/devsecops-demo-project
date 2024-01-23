@@ -49,7 +49,7 @@ pipeline {
           stage('Docker ECR Scan') {
             steps {
               sh '''
-              export IMAGE_DIGEST=$(aws ecr describe-images --repository-name devsecops-demo-ecr --filter tagStatus=TAGGED --query 'imageDetails[*].imageDigest' --output text)
+              export IMAGE_DIGEST=$(aws ecr describe-images --repository-name ${ECR_REPO_NAME} --filter tagStatus=TAGGED --query 'imageDetails[*].imageDigest' --output text)
               aws ecr start-image-scan \
                      --repository-name ${ECR_REPO_NAME} \
                     --image-id imageDigest=${IMAGE_DIGEST}
