@@ -5,7 +5,7 @@ pipeline {
         timeout(time: 1, unit: 'SECONDS')
     }*/
     stages {
-          stage('Helm Deploy') {
+          stage('Clean Up') {
             steps {
               sh '''
               aws ecr batch-delete-image \

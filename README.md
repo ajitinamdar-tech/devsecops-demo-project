@@ -20,6 +20,7 @@ This repository consists of a demo DevSecOps project.
 
 ## Pre-requisites for running the DevSecOps pipeline
 
+- Github repo
 - AWS VPC with 3 web public, 3 app private and 3 db private subnets must be created
 - A windows jump server must be provisioned as we have the entire platform privately accessible
 - Optional to have a Linux jump server 
@@ -30,6 +31,9 @@ This repository consists of a demo DevSecOps project.
 - Jenkins slave must have access to the EKS cluster
 - ECR private repo must be created 
 - Sonarqube server must be created (I have Sonarqube deployed on the tools server as a docker container)
+- IAM roles configured on Jenkins slave and EKS worker nodes
+- Port openings
+- Install Cloudwatch Observability Add-on 
 
 ## References and documentation
 
@@ -41,3 +45,4 @@ This repository consists of a demo DevSecOps project.
 - Docker ECR login | aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/
 - kubernetes docker secret creation | kubectl create secret generic devsecops-demo-ecr-secret     --from-file=.dockerconfigjson=/home/ec2-user/.docker/config.json     --type=kubernetes.io/dockerconfigjson
 - Sonarqube installation | https://hub.docker.com/_/sonarqube
+- Cloudwatch Observability add on | https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/install-CloudWatch-Observability-EKS-addon.html

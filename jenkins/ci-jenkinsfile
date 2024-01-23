@@ -8,10 +8,6 @@ pipeline {
         TMP_IMAGE_NAME = 'devsecops-demo-java-app'
         ECR_REPO_NAME = 'devsecops-demo-ecr'
     }
-    /*options {
-        // Timeout counter starts AFTER agent is allocated
-        timeout(time: 1, unit: 'SECONDS')
-    }*/
     stages {
           stage("Maven Build and Sonarqube Analysis") {
             steps {
