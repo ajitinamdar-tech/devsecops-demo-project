@@ -1,5 +1,13 @@
 pipeline {
     agent { label 'devsecops-demo-private-jenkins-slave' }
+    environment {
+        TAG_VERSION = '1.0.0'
+        REGISTRY_PATH = '277565952452.dkr.ecr.ap-southeast-1.amazonaws.com'
+        ECR_REPO_FULL_NAME = '277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr'
+        WAR_FULL_PATH = '/home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war'
+        TMP_IMAGE_NAME = 'devsecops-demo-java-app'
+        ECR_REPO_NAME = 'devsecops-demo-ecr'
+    }
     /*options {
         // Timeout counter starts AFTER agent is allocated
         timeout(time: 1, unit: 'SECONDS')
@@ -21,18 +29,18 @@ pipeline {
           }
           stage('Docker Build') {
             steps {
-              sh 'cp /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war .'
-              sh 'docker build -t devsecops-demo-java-app:1.0.0 .'
+              sh 'cp ${WAR_FULL_PATH} .'
+              sh 'docker build -t ${TMP_IMAGE_NAME}:${TAG_VERSION} .'
             }
           }
           stage('Docker Tag and Push to ECR') {
             steps {
               sh '''
-              aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com
+              aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin ${REGISTRY_PATH}
               export IMAGE_ID=$(sudo docker images --filter=reference=devsecops-demo-java-app --format "{{.ID}}")
               echo $IMAGE_ID
-              docker tag ${IMAGE_ID} 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0
-              docker push 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo-ecr:1.0.0
+              docker tag ${IMAGE_ID} ${REGISTRY_PATH}/${ECR_REPO_NAME}:${TAG_VERSION}
+              docker push ${ECR_REPO_FULL_NAME}:${TAG_VERSION}
               '''
             }
           }
