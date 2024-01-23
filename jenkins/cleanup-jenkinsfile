@@ -10,7 +10,7 @@ pipeline {
               sh '''
               aws ecr batch-delete-image \
                 --repository-name devsecops-demo-ecr \
-                --image-ids imageTag=1.0.0 imageTag=2.0.0 || :
+                --image-ids imageTag=1.0.0 imageTag=2.0.0 imageTag=3.0.0 imageTag=4.0.0 imageTag=5.0.0|| :
               docker pull nginx || :
               docker rmi -f $(docker images -aq) || :
               rm /home/ec2-user/workspace/ci-pipeline/target/devsecops-demo-project.war || :
