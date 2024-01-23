@@ -8,9 +8,8 @@ pipeline {
           stage('Helm Deploy') {
             steps {
               script {
-                    def inputConfig
                     // Get the input
-                    def userInput = input(
+                    def TAG_VERSION = input(
                             id: 'userInput', message: 'Enter the tag version:?',
                             parameters: [
 
@@ -18,17 +17,11 @@ pipeline {
                                             description: 'Enter the tag version',
                                             name: 'tagVersion')
                             ])
-
-                    // Save to variables. Default to empty string if not found.
-                    //inputConfig = userInput.tagVersion?:''
-                    echo userInput
-                    // Echo to console
-                    //echo("IQA Sheet Path: ${inputConfig}")
                 }
 
               sh '''
               cd helm-charts/devsecops-demo-app-deploy/
-              helm upgrade --install devsecops-demo-app-deploy .
+              helm upgrade --install devsecops-demo-app-deploy --set image.tag=${TAG_VERSION}.
               kubectl get svc
               '''
             }
