@@ -1,49 +1,31 @@
 
-# Project Title
+# DevSecOps Demo Project
 
-A brief description of what this project does and who it's for
-
-
-## Acknowledgements
-
- - [Awesome Readme Templates](https://awesomeopensource.com/project/elangosundar/awesome-README-templates)
- - [Awesome README](https://github.com/matiassingers/awesome-readme)
- - [How to write a Good readme](https://bulldogjob.com/news/449-how-to-write-a-good-readme-for-your-github-project)
+This repository consists of a demo DevSecOps project.
 
 
-## API Reference
+## DevSecOps Platform tools and technologies
 
-#### Get all items
-
-```http
-  GET /api/items
-```
-
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
-
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
+ - AWS VPC
+ - Github
+ - Jenkins 
+ - Maven
+ - Sonarqube
+ - Docker
+ - AWS ECR
+ - Helm
+ - AWS EKS
+ - AWS Cloudwatch logs
+ - AWS Cloudwatch container insights
 
 
-## Appendix
+## References and documentation
 
-Any additional information goes here
-
-
-## Authors
-
-- [@octokatherine](https://www.github.com/octokatherine)
-
+- Git installation | sudo yum install git -y
+- Jenkins installation | 
+- kubectl installation | https://docs.aws.amazon.com/eks/latest/userguide/install-kubectl.html
+- Docker installation | sudo yum install docker -y, sudo systemctl start docker
+- Maven installation | sudo yum install apache-maven -y
+- Docker ECR login | aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 277565952452.dkr.ecr.ap-southeast-1.amazonaws.com/
+- kubernetes docker secret creation | kubectl create secret generic devsecops-demo-ecr-secret     --from-file=.dockerconfigjson=/home/ec2-user/.docker/config.json     --type=kubernetes.io/dockerconfigjson
+- 
